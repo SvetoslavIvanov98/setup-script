@@ -20,20 +20,21 @@ This repository provides an easy-to-use Bash script to set up a comprehensive de
 
 ## Usage
 
-1. **Clone this repository or download the script:**
+1. **Run with one command (no clone needed):**
     ```sh
-    git clone <this-repo-url>
-    cd setup-script
+    curl -fsSL https://raw.githubusercontent.com/SvetoslavIvanov98/setup-script/main/setup.sh | bash
     ```
 
-2. **Run the setup script:**
+2. **Or clone this repository and run manually:**
     ```sh
+    git clone https://github.com/SvetoslavIvanov98/setup-script.git
+    cd setup-script
     bash setup.sh
     ```
 
 3. **Follow the prompts:**  
    The script will ask for confirmation before installing major components and optional tools (Ollama, NVIDIA toolkit, Open WebUI).  
-   When running Open WebUI, you can now choose between the CUDA (GPU support) or Main (CPU only) Docker image.
+   When running Open WebUI, you can now choose between the CUDA (GPU support) or Main (CPU only)
 
 ## What Gets Installed
 
