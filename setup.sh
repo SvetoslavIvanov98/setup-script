@@ -109,12 +109,22 @@ fi
 # --- Run Open WebUI container (optional) ---
 read -rp "Do you want to run the Open WebUI Docker container? [y/N]: " WEBUI_CONFIRM
 if [[ "$WEBUI_CONFIRM" =~ ^[Yy]$ ]]; then
+    echo "Which Open WebUI image do you want to use?"
+    echo "  1) CUDA (GPU support, for NVIDIA GPUs)"
+    echo "  2) Main (CPU only, more compatible)"
+    read -rp "Enter 1 or 2 [1]: " WEBUI_IMAGE_CHOICE
+    WEBUI_IMAGE_CHOICE=${WEBUI_IMAGE_CHOICE:-1}
+    if [[ "$WEBUI_IMAGE_CHOICE" == "2" ]]; then
+        WEBUI_IMAGE="ghcr.io/open-webui/open-webui:main"
+    else
+        WEBUI_IMAGE="ghcr.io/open-webui/open-webui:cuda"
+    fi
     sudo docker run -d --network=host \
         -v open-webui:/app/backend/data \
         -e OLLAMA_BASE_URL=http://127.0.0.1:11434 \
         --name open-webui \
         --restart always \
-        ghcr.io/open-webui/open-webui:cuda
+        "$WEBUI_IMAGE"
 fi
 
 echo "Setup complete!"
