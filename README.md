@@ -41,7 +41,7 @@ This repository provides an easy-to-use Bash script to set up a comprehensive de
 ## What Gets Installed
 
 - **Core Tools:** `python3`, `rustc`, `curl`, `git`, `make`, `nodejs`, `npm`, `fastfetch`, `flatpak`, `ca-certificates`, `ripgrep`
-- **Snap Apps:** `alacritty`, `code` (VS Code), `termius-app`
+- **Snap Apps:** `code` (VS Code), `termius-app`
 - **Flatpak Apps:** Discord, Gradia, RustDesk, Komikku, Neovim, Kdenlive, RetroArch
 - **Brave Browser**
 - **Docker Engine & Compose**
