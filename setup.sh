@@ -23,7 +23,7 @@ fi
 # --- Update and install core packages ---
 sudo apt update
 sudo apt install -y \
-    python3 python3-venv python3-pip python3-distutils \
+    python3 python3-venv python3-pip \
     curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep neovim
     
 if dpkg -l | grep -q '^ii  rustc '; then
