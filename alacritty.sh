@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 setupAlacrittyConfig() {
     printf "%b\n" "${YELLOW}Copying alacritty config files...${RC}"
