@@ -78,7 +78,11 @@ sudo apt install -y brave-browser
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Add Cargo to PATH for this script run
-source "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+else
+    echo "Warning: $HOME/.cargo/env not found, skipping source."
+fi
 
 # --- Install lazygit ---
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
