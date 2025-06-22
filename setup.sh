@@ -94,13 +94,6 @@ rm -f lazygit lazygit.tar.gz
 # --- Install NodeJS dependencies globally ---
 sudo npm install -g neovim tree-sitter-cli
 
-# --- Setup Starship ---
-curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
-# Add Starship to shell profile
-if ! grep -q 'starship init bash' "$HOME/.bashrc"; then
-    echo 'eval "$(starship init bash)"' >> "$HOME/.bashrc"
-fi 
-
 # --- Install Ollama and run models (optional, large downloads) ---
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
 if [[ "$OLLAMA_CONFIRM" =~ ^[Yy]$ ]]; then
