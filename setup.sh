@@ -151,16 +151,23 @@ if [[ "$MYBASH_CONFIRM" =~ ^[Yy]$ ]]; then
 fi
 
 # --- Adding autocompletion and syntax highlighting ---
-set +e
-if [ ! -d "ble.sh" ]; then
-    git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
-fi
-make -C ble.sh install PREFIX=~/.local
-if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
-    grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
-else
-    echo "Warning: ~/.local/share/blesh/ble.sh not found, autocompletion will not be enabled."
-fi
-set -e
+(
+    set +e
+    if [ ! -d "ble.sh" ]; then
+        git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
+    fi
+
+    make -C ble.sh install PREFIX=~/.local
+    MAKE_STATUS=$?
+
+    if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
+        grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
+    else
+        echo "Warning: ~/.local/share/blesh/ble.sh not found, autocompletion will not be enabled."
+        if [ $MAKE_STATUS -ne 0 ]; then
+            echo "ble.sh make install failed. Please check the output above for errors."
+        fi
+    fi
+)
 
 echo "Setup complete!"
