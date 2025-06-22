@@ -70,6 +70,9 @@ sudo apt install -y brave-browser
 # --- Install Rust (non-interactive) ---
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
+# Add Cargo to PATH for this script run
+source "$HOME/.cargo/env"
+
 # --- Install lazygit ---
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
