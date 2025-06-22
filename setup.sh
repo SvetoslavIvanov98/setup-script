@@ -110,13 +110,8 @@ LV_BRANCH='release-1.4/neovim-0.9' PYTHON="$PYTHON" bash <(curl -s https://raw.g
 
 deactivate
 
-# --- Setup custom bash ---
-if [ ! -d mybash ]; then
-    git clone --depth=1 https://github.com/dacrab/mybash.git
-fi
-cd mybash
-./setup.sh || true
-cd ..
+# --- Setup Alacritty and custom bash ---
+bash ./alacritty.sh
 
 # --- Install Ollama and run models (optional, large downloads) ---
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
