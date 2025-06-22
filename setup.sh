@@ -30,6 +30,12 @@ if dpkg -l | grep -q '^ii  rustc '; then
     sudo apt remove -y rustc
 fi
 
+# --- Ensure pip is available ---
+if ! command -v pip3 >/dev/null 2>&1; then
+    echo "pip3 not found, attempting to install..."
+    sudo apt install -y python3-pip
+fi
+
 # --- Install snap packages ---
 for snap in alacritty code termius-app; do
     sudo snap install "$snap" --classic || true
