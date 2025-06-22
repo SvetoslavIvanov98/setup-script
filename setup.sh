@@ -96,8 +96,9 @@ pip install pynvim
 # --- Prevent pip from using --user in venv ---
 export PIP_USER=0
 
-# --- Install LunarVim ---
-LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
+# --- Install LunarVim using venv Python ---
+PYTHON=$(which python)
+LV_BRANCH='release-1.4/neovim-0.9' PYTHON="$PYTHON" bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
 
 deactivate
 
