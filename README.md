@@ -5,7 +5,7 @@ This repository provides an easy-to-use Bash script to set up a comprehensive de
 ## Features
 
 - **Core Packages:** Python, Rust, Node.js, Git, and more
-- **Editors & Terminals:** VS Code, Alacritty, LunarVim, custom Bash setup
+- **Editors & Terminals:** VS Code, LunarVim, custom Bash setup
 - **Docker & NVIDIA Toolkit:** Full Docker support, optional NVIDIA GPU integration
 - **Browsers:** Brave browser installation
 - **Flatpak & Snap Apps:** Popular apps like Discord, Neovim, and more
