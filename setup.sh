@@ -147,7 +147,7 @@ if [[ "$MYBASH_CONFIRM" =~ ^[Yy]$ ]]; then
     if [ ! -d "mybash" ]; then
         git clone --depth=1 https://github.com/dacrab/mybash.git
     fi
-    ( cd mybash && ./setup.sh )
+    ( cd mybash && ./setup.sh ) || true
 fi
 
 # --- Adding autocompletion and syntax highlighting ---
