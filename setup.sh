@@ -91,11 +91,9 @@ rm -f lazygit lazygit.tar.gz
 python3 -m venv ~/.local/share/lunarvim-venv
 source ~/.local/share/lunarvim-venv/bin/activate
 pip install --upgrade pip
+pip install pynvim  # No --user!
 
-# Prevent pip from using --user in venv
-export PIP_USER=0
-
-# Install LunarVim
+# --- Install LunarVim ---
 LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
 
 deactivate
