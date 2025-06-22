@@ -110,6 +110,13 @@ LV_BRANCH='release-1.4/neovim-0.9' PYTHON="$PYTHON" bash <(curl -s https://raw.g
 
 deactivate
 
+# --- Setup Starship ---
+curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
+# Add Starship to shell profile
+if ! grep -q 'starship init bash' "$HOME/.bashrc"; then
+    echo 'eval "$(starship init bash)"' >> "$HOME/.bashrc"
+fi 
+
 # --- Setup Alacritty and custom bash ---
 curl -fsSLo "$(dirname "$0")/alacritty.sh" "https://raw.githubusercontent.com/SvetoslavIvanov98/setup-script/main/alacritty.sh"
 chmod +x "$(dirname "$0")/alacritty.sh"
