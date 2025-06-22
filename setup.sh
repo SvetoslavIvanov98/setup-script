@@ -1,11 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# === User-friendly Setup Script ===
-# This script sets up a development environment on Ubuntu 22.04+.
-# Run as: bash setup.sh
-# Requirements: sudo privileges, internet connection.
-
 # --- OS Check ---
 if ! grep -qi ubuntu /etc/os-release; then
     echo "This script is intended for Ubuntu. Exiting."
@@ -24,7 +19,7 @@ fi
 sudo apt update
 sudo apt install -y \
     python3 python3-venv python3-pip \
-    curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep neovim
+    curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep neovim gawk
     
 if dpkg -l | grep -q '^ii  rustc '; then
     sudo apt remove -y rustc
