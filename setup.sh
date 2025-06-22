@@ -23,7 +23,10 @@ fi
 # --- Update and install core packages ---
 sudo apt update
 sudo apt install -y \
-    python3 rustc curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep
+    python3 curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep neovim
+if dpkg -l | grep -q '^ii  rustc '; then
+    sudo apt remove -y rustc
+fi
 
 # --- Install snap packages ---
 for snap in alacritty code termius-app; do
@@ -51,7 +54,6 @@ flatpak_apps=(
     com.discordapp.Discord
     be.alexandervanhee.gradia
     com.rustdesk.RustDesk
-    io.neovim.nvim
 )
 for app in "${flatpak_apps[@]}"; do
     sudo flatpak install -y flathub "$app" || true
