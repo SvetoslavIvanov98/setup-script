@@ -90,9 +90,6 @@ rm -f lazygit lazygit.tar.gz
 # --- Install NodeJS dependencies globally ---
 sudo npm install -g neovim tree-sitter-cli
 
-# --- Pre-install pynvim system-wide to avoid LunarVim --user error ---
-sudo pip3 install pynvim
-
 # --- Create and activate venv for LunarVim ---
 python3 -m venv ~/.local/share/lunarvim-venv
 source ~/.local/share/lunarvim-venv/bin/activate
@@ -104,10 +101,9 @@ export PIP_USER=0
 export PIP_NO_USER=1
 export PIP_BREAK_SYSTEM_PACKAGES=1
 export LV_SKIP_PYTHON_DEPS=1
+export LV_SKIP_NODE_DEPS=1
 
 # --- Install LunarVim using venv Python ---
-export LV_SKIP_NODE_DEPS=1
-export LV_SKIP_PYTHON_DEPS=1
 PYTHON=$(which python)
 LV_BRANCH='release-1.4/neovim-0.9' PYTHON="$PYTHON" bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
 
