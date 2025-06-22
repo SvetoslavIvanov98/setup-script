@@ -103,6 +103,7 @@ pip install pynvim
 export PIP_USER=0
 export PIP_NO_USER=1
 export PIP_BREAK_SYSTEM_PACKAGES=1
+export LV_SKIP_PYTHON_DEPS=1
 
 # --- Install LunarVim using venv Python ---
 export LV_SKIP_NODE_DEPS=1
