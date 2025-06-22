@@ -122,9 +122,9 @@ cd ..
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
 if [[ "$OLLAMA_CONFIRM" =~ ^[Yy]$ ]]; then
     curl -fsSL https://ollama.com/install.sh | sh
-    ollama run deepseek-r1:14b || true
-    ollama run gemma3:12b || true
-    ollama run codegemma:7b || true
+    ollama pull deepseek-r1:14b || true
+    ollama pull gemma3:12b || true
+    ollama pull codegemma:7b || true
 fi
 
 # --- Install NVIDIA Container Toolkit (optional, for NVIDIA GPUs) ---
