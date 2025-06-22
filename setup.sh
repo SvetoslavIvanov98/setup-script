@@ -122,6 +122,9 @@ cd ..
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
 if [[ "$OLLAMA_CONFIRM" =~ ^[Yy]$ ]]; then
     curl -fsSL https://ollama.com/install.sh | sh
+    # Start the Ollama server in the background
+    nohup ollama serve > ~/.ollama.log 2>&1 &
+    sleep 5  # Give the server a few seconds to start
     ollama pull deepseek-r1:14b || true
     ollama pull gemma3:12b || true
     ollama pull codegemma:7b || true
