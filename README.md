@@ -38,6 +38,13 @@ This repository provides an easy-to-use Bash script to set up a comprehensive de
    The script will ask for confirmation before installing major components and optional tools (Ollama, NVIDIA toolkit, Open WebUI).  
    When running Open WebUI, you can now choose between the CUDA (GPU support) or Main (CPU only)
 
+4. **Testing branch:**
+    ```sh
+    curl -fsSL https://raw.githubusercontent.com/SvetoslavIvanov98/setup-script/testing/setup.sh -o setup.sh
+    chmod +x setup.sh
+    ./setup.sh
+    ```
+
 ## What Gets Installed
 
 - **Core Tools:** `python3`, `rustc`, `curl`, `git`, `make`, `nodejs`, `npm`, `fastfetch`, `flatpak`, `ca-certificates`, `ripgrep`

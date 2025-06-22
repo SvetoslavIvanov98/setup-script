@@ -1,11 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# === User-friendly Setup Script ===
-# This script sets up a development environment on Ubuntu 22.04+.
-# Run as: bash setup.sh
-# Requirements: sudo privileges, internet connection.
-
 # --- OS Check ---
 if ! grep -qi ubuntu /etc/os-release; then
     echo "This script is intended for Ubuntu. Exiting."
@@ -24,7 +19,7 @@ fi
 sudo apt update
 sudo apt install -y \
     python3 python3-venv python3-pip \
-    curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep neovim
+    curl git make nodejs npm fastfetch flatpak ca-certificates ripgrep neovim gawk
     
 if dpkg -l | grep -q '^ii  rustc '; then
     sudo apt remove -y rustc
@@ -141,8 +136,33 @@ if [[ "$WEBUI_CONFIRM" =~ ^[Yy]$ ]]; then
         "$WEBUI_IMAGE"
 fi
 
-git clone --depth=1 https://github.com/dacrab/mybash.git
-cd mybash
-./setup.sh
+# --- Optional: Clone and run mybash setup ---
+read -rp "Do you want to clone and run the mybash setup? [y/N]: " MYBASH_CONFIRM
+if [[ "$MYBASH_CONFIRM" =~ ^[Yy]$ ]]; then
+    if [ ! -d "mybash" ]; then
+        git clone --depth=1 https://github.com/dacrab/mybash.git
+    fi
+    ( cd mybash && ./setup.sh ) || true
+fi
+
+# --- Adding autocompletion and syntax highlighting ---
+(
+    set +e
+    if [ ! -d "ble.sh" ]; then
+        git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
+    fi
+
+    make -C ble.sh install PREFIX=~/.local
+    MAKE_STATUS=$?
+
+    if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
+        grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
+    else
+        echo "Warning: ~/.local/share/blesh/ble.sh not found, autocompletion will not be enabled."
+        if [ $MAKE_STATUS -ne 0 ]; then
+            echo "ble.sh make install failed. Please check the output above for errors."
+        fi
+    fi
+)
 
 echo "Setup complete!"
