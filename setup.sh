@@ -117,7 +117,16 @@ if ! grep -q 'starship init bash' "$HOME/.bashrc"; then
     echo 'eval "$(starship init bash)"' >> "$HOME/.bashrc"
 fi 
 
-# --- Setup Alacritty and custom bash ---
+# --- Install Alacritty (Snap) ---
+if ! command -v alacritty >/dev/null 2>&1; then
+    sudo snap install alacritty --classic
+fi
+
+# --- Setup Alacritty config colors ---
+YELLOW='\033[1;33m'
+GREEN='\033[1;32m'
+RC='\033[0m'
+
 setupAlacrittyConfig() {
     printf "%b\n" "${YELLOW}Copying alacritty config files...${RC}"
     if [ -d "${HOME}/.config/alacritty" ] && [ ! -d "${HOME}/.config/alacritty-bak" ]; then
@@ -125,12 +134,11 @@ setupAlacrittyConfig() {
     fi
     mkdir -p "${HOME}/.config/alacritty/"
     curl -sSLo "${HOME}/.config/alacritty/alacritty.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/alacritty.toml"
-    curl -sSLo "${HOME}/.config/alacritty/keybinds.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/keybinds.toml" 
+    curl -sSLo "${HOME}/.config/alacritty/keybinds.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/keybinds.toml"
     curl -sSLo "${HOME}/.config/alacritty/nordic.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/nordic.toml"
     printf "%b\n" "${GREEN}Alacritty configuration files copied.${RC}"
 }
 
-# Call the function here:
 setupAlacrittyConfig
 
 # --- Install Ollama and run models (optional, large downloads) ---
