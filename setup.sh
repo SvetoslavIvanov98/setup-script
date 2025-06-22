@@ -90,26 +90,6 @@ rm -f lazygit lazygit.tar.gz
 # --- Install NodeJS dependencies globally ---
 sudo npm install -g neovim tree-sitter-cli
 
-# --- Create and activate venv for LunarVim ---
-python3 -m venv ~/.local/share/lunarvim-venv
-source ~/.local/share/lunarvim-venv/bin/activate
-pip install --upgrade pip
-pip install pynvim
-
-# --- Prevent pip from using --user in venv ---
-export PIP_USER=0
-export PIP_NO_USER=1
-export PIP_BREAK_SYSTEM_PACKAGES=1
-export LV_SKIP_PYTHON_DEPS=1
-export LV_SKIP_NODE_DEPS=1
-
-# --- Install LunarVim using venv Python ---
-export PIP_BREAK_SYSTEM_PACKAGES=1
-PYTHON=$(which python)
-LV_BRANCH='release-1.4/neovim-0.9' PYTHON="$PYTHON" sh <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
-
-deactivate
-
 # --- Setup Starship ---
 curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 # Add Starship to shell profile
