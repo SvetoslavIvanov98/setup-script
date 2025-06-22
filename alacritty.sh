@@ -1,29 +1,5 @@
 #!/bin/sh -e
 
-installAlacritty() {
-    if ! command_exists alacritty; then
-    printf "%b\n" "${YELLOW}Installing Alacritty...${RC}"
-        case "$PACKAGER" in
-            apt)
-                sudo apt install -y alacritty
-                ;;
-            snap)
-                sudo snap install alacritty --classic
-                ;;
-            flatpak)
-                flatpak install -y flathub org.alacritty.Alacritty
-                ;;
-            *)
-                printf "%b\n" "${RED}Unsupported package manager: $PACKAGER${RC}"
-                exit 1
-                ;;
-        esac
-    else
-        printf "%b\n" "${GREEN}Alacritty is already installed.${RC}"
-    fi
-
-}
-
 setupAlacrittyConfig() {
     printf "%b\n" "${YELLOW}Copying alacritty config files...${RC}"
     if [ -d "${HOME}/.config/alacritty" ] && [ ! -d "${HOME}/.config/alacritty-bak" ]; then
