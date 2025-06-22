@@ -95,6 +95,7 @@ pip install pynvim
 
 # --- Prevent pip from using --user in venv ---
 export PIP_USER=0
+export PIP_BREAK_SYSTEM_PACKAGES=1
 
 # --- Install LunarVim using venv Python ---
 PYTHON=$(which python)
