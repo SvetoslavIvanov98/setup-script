@@ -141,4 +141,8 @@ if [[ "$WEBUI_CONFIRM" =~ ^[Yy]$ ]]; then
         "$WEBUI_IMAGE"
 fi
 
+git clone --depth=1 https://github.com/dacrab/mybash.git
+cd mybash
+./setup.sh
+
 echo "Setup complete!"
