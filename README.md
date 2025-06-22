@@ -24,7 +24,7 @@ This repository provides an easy-to-use Bash script to set up a comprehensive de
     ```sh
     curl -fsSL https://raw.githubusercontent.com/SvetoslavIvanov98/setup-script/main/setup.sh -o setup.sh
     chmod +x setup.sh
-    ./setup.sh
+    bash setup.sh
     ```
 
 2. **Or clone this repository and run manually:**
