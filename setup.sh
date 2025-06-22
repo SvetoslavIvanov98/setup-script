@@ -141,15 +141,6 @@ if [[ "$WEBUI_CONFIRM" =~ ^[Yy]$ ]]; then
         "$WEBUI_IMAGE"
 fi
 
-# --- Adding autocompletion and syntax highlighting ---
-set +e
-if [ ! -d "ble.sh" ]; then
-    git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
-fi
-make -C ble.sh install PREFIX=~/.local
-grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
-set -e
-
 # --- Optional: Clone and run mybash setup ---
 read -rp "Do you want to clone and run the mybash setup? [y/N]: " MYBASH_CONFIRM
 if [[ "$MYBASH_CONFIRM" =~ ^[Yy]$ ]]; then
@@ -158,5 +149,14 @@ if [[ "$MYBASH_CONFIRM" =~ ^[Yy]$ ]]; then
     fi
     ( cd mybash && ./setup.sh ) || true
 fi
+
+# --- Adding autocompletion and syntax highlighting ---
+set +e
+if [ ! -d "ble.sh" ]; then
+    git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
+fi
+make -C ble.sh install PREFIX=~/.local
+grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
+set -e
 
 echo "Setup complete!"
