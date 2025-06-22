@@ -37,7 +37,7 @@ if ! command -v pip3 >/dev/null 2>&1; then
 fi
 
 # --- Install snap packages ---
-for snap in alacritty code termius-app; do
+for snap in code termius-app; do
     sudo snap install "$snap" --classic || true
 done
 
@@ -116,30 +116,6 @@ curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 if ! grep -q 'starship init bash' "$HOME/.bashrc"; then
     echo 'eval "$(starship init bash)"' >> "$HOME/.bashrc"
 fi 
-
-# --- Install Alacritty (Snap) ---
-if ! command -v alacritty >/dev/null 2>&1; then
-    sudo snap install alacritty --classic
-fi
-
-# --- Setup Alacritty config colors ---
-YELLOW='\033[1;33m'
-GREEN='\033[1;32m'
-RC='\033[0m'
-
-setupAlacrittyConfig() {
-    printf "%b\n" "${YELLOW}Copying alacritty config files...${RC}"
-    if [ -d "${HOME}/.config/alacritty" ] && [ ! -d "${HOME}/.config/alacritty-bak" ]; then
-        cp -r "${HOME}/.config/alacritty" "${HOME}/.config/alacritty-bak"
-    fi
-    mkdir -p "${HOME}/.config/alacritty/"
-    curl -sSLo "${HOME}/.config/alacritty/alacritty.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/alacritty.toml"
-    curl -sSLo "${HOME}/.config/alacritty/keybinds.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/keybinds.toml"
-    curl -sSLo "${HOME}/.config/alacritty/nordic.toml" "https://github.com/ChrisTitusTech/dwm-titus/raw/main/config/alacritty/nordic.toml"
-    printf "%b\n" "${GREEN}Alacritty configuration files copied.${RC}"
-}
-
-setupAlacrittyConfig
 
 # --- Install Ollama and run models (optional, large downloads) ---
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
