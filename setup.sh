@@ -87,8 +87,15 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 rm -f lazygit lazygit.tar.gz
 
+# --- Create and activate venv for LunarVim ---
+python3 -m venv ~/.local/share/lunarvim-venv
+source ~/.local/share/lunarvim-venv/bin/activate
+pip install --upgrade pip
+
 # --- Install LunarVim ---
 LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
+
+deactivate
 
 # --- Setup custom bash ---
 if [ ! -d mybash ]; then
