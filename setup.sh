@@ -111,8 +111,6 @@ LV_BRANCH='release-1.4/neovim-0.9' PYTHON="$PYTHON" bash <(curl -s https://raw.g
 deactivate
 
 # --- Setup Alacritty and custom bash ---
-source alacritty.sh
-# Ensure alacritty.sh is sourced correctly
 bash "$(dirname "$0")/alacritty.sh"
 
 # --- Install Ollama and run models (optional, large downloads) ---
