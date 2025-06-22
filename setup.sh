@@ -141,8 +141,20 @@ if [[ "$WEBUI_CONFIRM" =~ ^[Yy]$ ]]; then
         "$WEBUI_IMAGE"
 fi
 
-git clone --depth=1 https://github.com/dacrab/mybash.git
-cd mybash
-./setup.sh
+# --- Optional: Clone and run mybash setup ---
+read -rp "Do you want to clone and run the mybash setup? [y/N]: " MYBASH_CONFIRM
+if [[ "$MYBASH_CONFIRM" =~ ^[Yy]$ ]]; then
+    if [ ! -d "mybash" ]; then
+        git clone --depth=1 https://github.com/dacrab/mybash.git
+    fi
+    cd mybash
+    ./setup.sh
+    cd ..
+fi
+
+# --- Adding autocompletion and syntax highlighting ---
+git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
+make -C ble.sh install PREFIX=~/.local
+echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
 
 echo "Setup complete!"
