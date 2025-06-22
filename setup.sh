@@ -130,6 +130,9 @@ setupAlacrittyConfig() {
     printf "%b\n" "${GREEN}Alacritty configuration files copied.${RC}"
 }
 
+# Call the function here:
+setupAlacrittyConfig
+
 # --- Install Ollama and run models (optional, large downloads) ---
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
 if [[ "$OLLAMA_CONFIRM" =~ ^[Yy]$ ]]; then
