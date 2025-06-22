@@ -8,7 +8,7 @@ This repository provides an easy-to-use Bash script to set up a comprehensive de
 - **Editors & Terminals:** VS Code, Alacritty, LunarVim, custom Bash setup
 - **Docker & NVIDIA Toolkit:** Full Docker support, optional NVIDIA GPU integration
 - **Browsers:** Brave browser installation
-- **Flatpak & Snap Apps:** Popular apps like Discord, Kdenlive, RetroArch, and more
+- **Flatpak & Snap Apps:** Popular apps like Discord, Neovim, and more
 - **AI Tools:** Optional installation of Ollama and large language models
 - **Open WebUI:** Optional web interface for AI models, with choice of CUDA (GPU) or Main (CPU) image
 

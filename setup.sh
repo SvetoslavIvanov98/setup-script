@@ -46,10 +46,7 @@ flatpak_apps=(
     com.discordapp.Discord
     be.alexandervanhee.gradia
     com.rustdesk.RustDesk
-    info.febvre.Komikku
     io.neovim.nvim
-    org.kde.kdenlive
-    org.libretro.RetroArch
 )
 for app in "${flatpak_apps[@]}"; do
     sudo flatpak install -y flathub "$app" || true
