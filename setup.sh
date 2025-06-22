@@ -156,7 +156,11 @@ if [ ! -d "ble.sh" ]; then
     git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
 fi
 make -C ble.sh install PREFIX=~/.local
-grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
+if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
+    grep -qxF 'source ~/.local/share/blesh/ble.sh' ~/.bashrc || echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
+else
+    echo "Warning: ~/.local/share/blesh/ble.sh not found, autocompletion will not be enabled."
+fi
 set -e
 
 echo "Setup complete!"
