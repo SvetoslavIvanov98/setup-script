@@ -120,7 +120,7 @@ fi
 # --- Setup Alacritty and custom bash ---
 curl -fsSLo "$(dirname "$0")/alacritty.sh" "https://raw.githubusercontent.com/SvetoslavIvanov98/setup-script/main/alacritty.sh"
 chmod +x "$(dirname "$0")/alacritty.sh"
-bash "$(dirname "$0")/alacritty.sh"
+sh "$(dirname "$0")/alacritty.sh"
 
 # --- Install Ollama and run models (optional, large downloads) ---
 read -rp "Do you want to install Ollama and download large models? [y/N]: " OLLAMA_CONFIRM
