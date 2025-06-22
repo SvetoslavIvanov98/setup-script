@@ -41,6 +41,11 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+# --- Add Flathub repository if not present ---
+if ! flatpak remote-list | grep -q flathub; then
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+fi
+
 # --- Install Flatpak apps ---
 flatpak_apps=(
     com.discordapp.Discord
