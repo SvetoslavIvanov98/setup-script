@@ -119,6 +119,7 @@ fi
 
 # --- Setup Alacritty and custom bash ---
 curl -fsSLo "$(dirname "$0")/alacritty.sh" "https://raw.githubusercontent.com/SvetoslavIvanov98/setup-script/main/alacritty.sh"
+dos2unix "$(dirname "$0")/alacritty.sh"
 chmod +x "$(dirname "$0")/alacritty.sh"
 sh "$(dirname "$0")/alacritty.sh"
 
